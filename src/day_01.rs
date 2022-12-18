@@ -1,5 +1,6 @@
 use std::fs;
 
+#[allow(dead_code)]
 pub fn day_01() {
     let (final_floor, cellar_index) = walk_floors("./input/day_01.txt");
     println!("Santa reached floor {}", final_floor);
