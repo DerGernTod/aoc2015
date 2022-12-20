@@ -1,5 +1,6 @@
 use std::fs;
 
+#[allow(dead_code)]
 pub fn day_05() {
     println!("Santa has {} nice strings", count_nice_strings("./input/day_05.txt"));
     println!("Santa has {} nicer strings", count_nicer_strings("./input/day_05.txt"));
