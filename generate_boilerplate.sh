@@ -73,6 +73,8 @@ mod tests {
 EOL
     echo "Created boilerplate for day $DAY at $FILE_PATH"
     code "$FILE_PATH"
+    code "$INPUT_TEST_FILE"
+    code "$INPUT_FILE"
 else
     echo "Boilerplate for day $DAY already exists at $FILE_PATH"
 fi
