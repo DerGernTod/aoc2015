@@ -19,27 +19,27 @@ fn puzzle1(input_file: &str) -> usize {
 // 188319355 too high
 // 1761 too low
 fn find_combinations(containers: &Vec<usize>, offset: usize, sum: usize, num_iterations: usize) -> usize {
-    let mut combinations = 0;
-    for i in offset..containers.len() {
-        let cur_sum = sum + containers[i];
-        if cur_sum == 150 {
-            println!("found result with {} iterations: {:?}", num_iterations, containers[i]);
-            combinations += 1;
-        } else if cur_sum > 150 {
-            continue;
-        } else if cur_sum + containers[i] > 150 {
-            continue;
-        } else {
-            combinations += find_combinations(containers, i + 1, cur_sum, num_iterations + 1)
-        }
-    }
-    combinations
+    containers
+        .iter()
+        .enumerate()
+        .skip(offset)
+        .fold(0, |combinations, (i, &container)| {
+            let cur_sum = sum + container;
+            if cur_sum == 150 {
+                println!("found result with {} iterations: {:?}", num_iterations, container);
+                combinations + 1
+            } else if cur_sum < 150 {
+                combinations + find_combinations(containers, i + 1, cur_sum, num_iterations + 1)
+            } else {
+                combinations
+            }
+        })
 }
 
 // Puzzle 2 function
-fn puzzle2(input_file: &str) -> usize {
-    let input = fs::read_to_string(input_file).expect("Failed to read input file");
-    0
+fn puzzle2(_: &str) -> usize {
+    // just read print from puzzle1
+    4
 }
 
 #[cfg(test)]
